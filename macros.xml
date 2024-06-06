@@ -1,0 +1,14 @@
+<macros>
+    <token name="@TOOL_VERSION@">2.0.7</token>
+    <token name="@VERSION_SUFFIX@">galaxy0</token>
+    <xml name="requirements">
+        <requirements>
+            <requirement type="package" version="@TOOL_VERSION@">eukulele</requirement>
+        </requirements>
+    </xml>
+    <xml name="citations">
+        <citations>
+            <citation type="doi">https://doi.org/10.21105/joss.02817</citation>
+        </citations>
+    </xml>
+</macros>

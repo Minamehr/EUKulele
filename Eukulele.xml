@@ -1,0 +1,116 @@
+<tool id="eukulele" name="eukulele" version="@TOOL_VERSION@+galaxy0" profile="21.05">
+    <description>a Python program for taxonomic annotation of microbes,in particular eukaryote, in metatranscriptomic and metagenomic samples </description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="biotools"/>
+    <expand macro="requirements"/>
+    <command detect_errors="exit_code"><![CDATA[ 
+        mkdir -p "$output_dir"
+        mkdir -p "$input_dir"
+            ln -s $file inpur/file
+
+        EUKulele 
+        -s '$input_dir' 
+        -o '$output_dir'
+        -m '$mets_or_mags'
+        --database '${eukulele_database.fields.path}'
+        #if $alignment
+            --alignment_choice $alignment
+        #end if 
+        #if $nucleotide_extension:
+            --n_ext '$nucleotide_extension'
+        #end if
+        #if $consensus_cutoff
+            --consensus_cutoff $consensus_cutoff
+        #end if
+        #if $cutoff_file
+            --cutoff_file "$cutoff_file"
+        #if $run_transdecoder
+            --run_transdecoder "$run_transdecoder"
+        #end if
+
+        # BUSCO assessment options
+        #if $individual_or_summary
+            -i 
+        #end if
+        #if $organisms
+            --organisms '$organisms'
+        #end if
+        #if $taxonomy_organisms
+            --taxonomy_organisms '$taxonomy_organisms'
+        #end if
+    ]]></command>
+    <inputs>
+        <param name="input_dir" label="input files to be assessed" help="input files inside the directory must be in fasta,fna, or faa format"/>
+        <param name="mets_or_mags" type="select" label="Specify METs or MAGs files">
+            <option value="mets">METs</option>
+            <option value="mags">MAGs</option>
+        </param>
+        <param argument="alignment" type="select" optional="true" label="A choice of aligner to use, currently BLAST or DIAMOND. Default is DIAMOND.">
+            <option value="diamond" selected="True">DIAMOND</option>
+            <option value="blast">BLAST</option>
+        </param>
+        <param argument="nucleotide_extension" type="select" optional="true" label="The file extension for samples in nucleotide format. Defaults to .fasta.">
+            <option value=".fasta" selected="True">fasta</option>
+            <option value=".fna">fna</option>
+        </param>
+        <param name="run_transdecoder" type="boolean" truevalue="1" falsevalue="0" label="Use TransDecoder to translate input nucleotide sequences"/>
+        <param argument="consensus_cutoff" type="float" value="0.75" min="0.5" max="1" optional="true" label="Probability threshold for the first stage." help="The value to be used to decide whether enough of the taxonomic matches are identical to overlook a discrepancy in classification based on hits associated with a contig. Defaults to 0.75 (75%)."/>
+        <param argument="cutoff_file" type="data" format="yaml" optional="true" label="Custom cutoff file for taxonomic classifications (YAML format)">
+            <help>
+                Provide a YAML file with custom percent identity cutoffs for various taxonomic classifications. If not provided, the default values will be used.
+                #### Example YAML file format:
+                species: 95
+                genus: 80
+                family: 65
+                order: 50
+                class: 30
+                division: 20
+                supergroup: 15
+                domain: 5
+                ```
+            </help>
+        </param>
+        <section name="busco_assessment" title="Options for BUSCO assessment">
+            <param argument="individual_or_summary" type="boolean" truevalue="-i" falsevalue="" label="Run BUSCO assessment in individual mode (default is summary mode)"/>
+            <param argument="organisms" type="text" optional="true" label="List of organisms/groups to test the BUSCO completeness of matching contigs for (comma-separated)"/>
+            <param argument="taxonomy_organisms" type="text" optional="true" label="Taxonomic level of the groupings indicated in the list of organisms (comma-separated)"/>
+        </section>
+        <param name="eukulele_database" type="select" label="Select a eukulele database">
+            <options from_data_table="eukulele_databases">
+                <validator message="No eukulele database is available" type="no_options" />
+            </options>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="output_dir" format="directory" label="Output Directory"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="input_dir" value="MAGs_input"/>
+            <param name="mets_or_mags" value="mags"/>
+            <param name="alignment" value="diamond"/>
+            <param name="eukulele_database" value="test_entry"/>
+            <output name="output_dir" file="test_MAGs_out"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+What it does
+============
+EUKulele is a Python program designed for the taxonomic annotation of microbes in metatranscriptomic and metagenomic samples, focusing particularly on eukaryote discovery. 
+
+How it works
+============
+In principle, there are two prerequisites for running the software:
+
+Metagenomic or metatranscriptomic sample files (unless using the provided sample data)
+A database to align the contigs from the metagenome/metatranscriptome to
+
+Additional Resources
+====================
+For a more comprehensive understanding of EUKlele and detailed usage instructions, please visit the EUKlele GitHub repository:
+EUKlele GitHub Repository: [https://github.com/AlexanderLabWHOI/EUKulele]   
+    ]]></help>
+    <expand macro="citations"/>
+</tool>
