@@ -1,0 +1,11 @@
+#This is a sample file distributed with Galaxy that enables tools
+#to use a eukulele DB folder. The eukulele_db_versioned.loc 
+#file needs this format (longer white space is the TAB character):
+
+#<unique_build_id>	<dbkey>	<version>	<display_name>	<DB_folder_path>
+
+# for example:
+
+# eukulele_db_bla	eukulele_db	v0.1	Eukelele PhyloDB v0.1	/data/eukelele_db_v0.1
+
+# https://eukulele.readthedocs.io/en/latest/databaseandconfig.html
