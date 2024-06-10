@@ -1,0 +1,19 @@
+diamond v0.9.24.125 | by Benjamin Buchfink <buchfink@gmail.com>
+Licensed under the GNU GPL <https://www.gnu.org/licenses/gpl.txt>
+Check http://github.com/bbuchfink/diamond for updates.
+
+#CPU threads: 8
+Scoring parameters: (Matrix=BLOSUM62 Lambda=0.267 K=0.041 Penalties=11/1)
+Database file: /home/paul/git/people/mina/EUKulele/test-data/test_db/reference-pep-trunc.pep.faa
+Opening the database file...  [0.000101s]
+Loading sequences...  [0.018216s]
+Masking sequences...  [0.11693s]
+Writing sequences...  [0.005913s]
+Hashing sequences...  [0.001323s]
+Loading sequences...  [1.1e-05s]
+Writing trailer...  [0.000151s]
+Closing the input file...  [9e-06s]
+Closing the database file...  [1.7e-05s]
+Database hash = 288ba6342b98b17456a4a540335e86de
+Processed 8198 sequences, 2708827 letters.
+Total time = 0.14278s

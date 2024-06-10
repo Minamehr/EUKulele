@@ -20,20 +20,24 @@
         #end for
 
 
+
         EUKulele 
         -s 'input_dir' 
         -o 'output_dir'
         -m '$mets_or_mags'
+
+        ## TODO link individual DB parts to the command
+
         ## --database '${eukulele_database}'
-        --reference_dir '${reference_dir}'
-        ## #if $ref_fasta
-        ##     --ref_fasta '$ref_fasta'
-        ## #end if
-        ## #if $protein_map
-        ##     --p_ext '$protein_map'
-        ## #end if
-        ## #if $tax_table
-        ##     --tax_table "$tax_table"
+        ## --reference_dir '${reference_dir}'
+        ## ## #if $ref_fasta
+        ## --ref_fasta '${reference_dir}/reference-pep-trunc.pep.faa'
+        ## ## #end if
+        ## ## #if $protein_map
+        ## --p_ext '$protein_map'
+        ## ## #end if
+        ## ## #if $tax_table
+        ## --tax_table "$tax_table"
         ## #end if
 
         #if $alignment

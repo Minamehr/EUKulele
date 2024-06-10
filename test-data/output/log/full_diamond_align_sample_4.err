@@ -1,0 +1,75 @@
+diamond v0.9.24.125 | by Benjamin Buchfink <buchfink@gmail.com>
+Licensed under the GNU GPL <https://www.gnu.org/licenses/gpl.txt>
+Check http://github.com/bbuchfink/diamond for updates.
+
+#CPU threads: 8
+Scoring parameters: (Matrix=BLOSUM62 Lambda=0.267 K=0.041 Penalties=11/1)
+Temporary directory: output/mags_full/diamond
+Opening the database...  [3.5e-05s]
+#Target sequences to report alignments for: 100
+Opening the input file...  [2.1e-05s]
+Opening the output file...  [2.8e-05s]
+Loading query sequences...  [0.002676s]
+Masking queries...  [0.014867s]
+Building query seed set...  [0.005159s]
+Algorithm: Double-indexed
+Building query histograms...  [0.001831s]
+Allocating buffers...  [3.3e-05s]
+Loading reference sequences...  [0.005612s]
+Building reference histograms...  [0.014203s]
+Allocating buffers...  [4.2e-05s]
+Initializing temporary storage...  [0.001728s]
+Processing query chunk 0, reference chunk 0, shape 0, index chunk 0.
+Building reference index...  [0.017453s]
+Building query index...  [0.002778s]
+Building seed filter...  [0.001826s]
+Searching alignments...  [0.008752s]
+Processing query chunk 0, reference chunk 0, shape 0, index chunk 1.
+Building reference index...  [0.018941s]
+Building query index...  [0.002468s]
+Building seed filter...  [0.001746s]
+Searching alignments...  [0.007957s]
+Processing query chunk 0, reference chunk 0, shape 0, index chunk 2.
+Building reference index...  [0.019922s]
+Building query index...  [0.002483s]
+Building seed filter...  [0.001549s]
+Searching alignments...  [0.007814s]
+Processing query chunk 0, reference chunk 0, shape 0, index chunk 3.
+Building reference index...  [0.015994s]
+Building query index...  [0.002139s]
+Building seed filter...  [0.001695s]
+Searching alignments...  [0.00763s]
+Processing query chunk 0, reference chunk 0, shape 1, index chunk 0.
+Building reference index...  [0.012035s]
+Building query index...  [0.001703s]
+Building seed filter...  [0.001482s]
+Searching alignments...  [0.006307s]
+Processing query chunk 0, reference chunk 0, shape 1, index chunk 1.
+Building reference index...  [0.012881s]
+Building query index...  [0.00183s]
+Building seed filter...  [0.00137s]
+Searching alignments...  [0.005967s]
+Processing query chunk 0, reference chunk 0, shape 1, index chunk 2.
+Building reference index...  [0.014588s]
+Building query index...  [0.001795s]
+Building seed filter...  [0.001379s]
+Searching alignments...  [0.006082s]
+Processing query chunk 0, reference chunk 0, shape 1, index chunk 3.
+Building reference index...  [0.01238s]
+Building query index...  [0.001642s]
+Building seed filter...  [0.001501s]
+Searching alignments...  [0.006301s]
+Deallocating buffers...  [0.000296s]
+Computing alignments...  [0.033107s]
+Deallocating reference...  [0.000278s]
+Loading reference sequences...  [2.9e-05s]
+Deallocating buffers...  [9e-06s]
+Deallocating queries...  [4e-05s]
+Loading query sequences...  [1.4e-05s]
+Closing the input file...  [1.3e-05s]
+Closing the output file...  [2.4e-05s]
+Closing the database file...  [1e-05s]
+Deallocating taxonomy...  [8e-06s]
+Total time = 0.291647s
+Reported 1106 pairwise alignments, 1107 HSPs.
+833 queries aligned.
