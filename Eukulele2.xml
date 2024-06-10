@@ -5,11 +5,24 @@
     </macros>
     <expand macro="requirements"/>
     <command detect_errors="exit_code"><![CDATA[ 
-        mkdir -p "$output_dir" 
+        mkdir -p "output_dir" &&
+
+        ## #for $i, $file in enumerate($input):
+        ##     ln -s '$file' './inputs/$file.binning_files.element_identifier' &&
+        ##     #if $file.labels:
+        ##         $label.append($file.labels)
+        ##     #end if 
+        ## #end for
+
+        mkdir -p "input_dir" &&
+        #for $file in $input:
+            ln -s '$file' 'input_dir/$file.element_identifier' &&
+        #end for
+
 
         EUKulele 
-        -s '$input_dir' 
-        -o '$output_dir'
+        -s 'input_dir' 
+        -o 'output_dir'
         -m '$mets_or_mags'
         ## --database '${eukulele_database}'
         --reference_dir '${reference_dir}'
@@ -34,11 +47,13 @@
         #end if
         #if $cutoff_file
             --cutoff_file "$cutoff_file"
+        #end if
+
         #if $run_transdecoder
             --run_transdecoder "$run_transdecoder"
         #end if
 
-        # BUSCO assessment options
+        ## BUSCO assessment options
         #if $individual_or_summary
             -i 
         #end if
@@ -51,7 +66,11 @@
     ]]></command>
     <inputs>
 
-        <param name="input_dir" type="data" format="directory" label="input files to be assessed" help="input files inside the directory must be in fasta,fna, or faa format"/>
+        <!-- <param name="input_dir" type="data" format="directory" label="input files to be assessed" help="input files inside the directory must be in fasta,fna, or faa format"/> -->
+        <param name="input" type="data_collection" collection_type="list" format="fasta" label="input files to be assessed" help="Input fasta files." />
+
+
+
         <param name="mets_or_mags" type="select" label="Specify METs or MAGs files">
             <option value="mets">METs</option>
             <option value="mags">MAGs</option>
@@ -104,9 +123,15 @@
         <param name="protein_map" type="text" optional="true" label="Name of the JSON file containing protein correspondences"/> -->
 
     </inputs>
-    <outputs>
+    <!-- <outputs>
         <data name="output_dir" format="directory" label="Output Directory"/>
+    </outputs> -->
+    <outputs>
+        <collection name="output" type="list" label="Output">
+            <discover_datasets pattern="__name_and_ext__" directory="output_dir" />
+        </collection>
     </outputs>
+
     <tests>
         <test expect_num_outputs="1">
             <param name="input_dir" value="MAGs_input"/>
