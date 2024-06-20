@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/home/paul/miniconda3/envs/eukulele/bin/EUKulele", line 8, in <module>
+    EUKulele.eukulele(string_arguments=' '.join(sys.argv[1:]))
+  File "/home/paul/miniconda3/envs/eukulele/lib/python3.7/site-packages/EUKulele/EUKulele_config.py", line 32, in eukulele
+    EUKulele.EUKulele_main.main(str(string_arguments))
+  File "/home/paul/miniconda3/envs/eukulele/lib/python3.7/site-packages/EUKulele/EUKulele_main.py", line 254, in main
+    split("/")[0:-1]))
+  File "/home/paul/miniconda3/envs/eukulele/lib/python3.7/site-packages/EUKulele/download_database.py", line 101, in downloadDatabase
+    rc1 = createProteinTable(create_protein_table_args)
+  File "/home/paul/miniconda3/envs/eukulele/lib/python3.7/site-packages/scripts/create_protein_table.py", line 88, in createProteinTable
+    for record in SeqIO.parse(pepfile, "fasta"):
+  File "/home/paul/miniconda3/envs/eukulele/lib/python3.7/site-packages/Bio/SeqIO/__init__.py", line 607, in parse
+    return iterator_generator(handle)
+  File "/home/paul/miniconda3/envs/eukulele/lib/python3.7/site-packages/Bio/SeqIO/FastaIO.py", line 183, in __init__
+    super().__init__(source, mode="t", fmt="Fasta")
+  File "/home/paul/miniconda3/envs/eukulele/lib/python3.7/site-packages/Bio/SeqIO/Interfaces.py", line 47, in __init__
+    self.stream = open(source, "r" + mode)
+FileNotFoundError: [Errno 2] No such file or directory: 'test_db/eukprot/reference.pep.fa'

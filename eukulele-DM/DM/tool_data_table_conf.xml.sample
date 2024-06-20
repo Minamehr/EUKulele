@@ -1,0 +1,7 @@
+<tables>
+    <!-- Location of EUKulele DB file -->
+    <table name="eukulele_db_versioned" comment_char="#">
+        <columns>value, dbkey, version, name, path</columns>
+        <file path="tool-data/eukulele_db_versioned.loc" />
+    </table>
+</tables>

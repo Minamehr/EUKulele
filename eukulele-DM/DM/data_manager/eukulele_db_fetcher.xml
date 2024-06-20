@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<tool id="eukulele_db_fetcher" name="eukulele DB fetcher" tool_type="manage_data" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="@PROFILE@">
+    <description>Fetches the DB required for eukulele</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <!-- <expand macro="biotools" /> -->
+    <expand macro="requirements" />
+    <!-- <expand macro="version" /> -->
+
+    <command detect_errors="exit_code">
+    <![CDATA[
+        python '$__tool_directory__/data_manager_fetch_eukulele_db.py' --out '${out_file}' --version '${version}' --db-type '${db_type}'
+    ]]>
+    </command>
+    <inputs>
+    <!-- <param name="test_data_manager" type="text" value=""/> -->
+    <param argument="--version" type="text" optional="false" value="2.0.7" label="Version of the DB, check https://github.com/AlexanderLabWHOI/EUKulele." />
+
+    <param argument="--db_type" type="select" multiple="false" label="Database Version" help="See https://eukulele.readthedocs.io/en/latest/databaseandconfig.html#default-databases.">
+        <option value="phylodb">PhyloDB</option>
+        <option value="eukprot">EukProt</option>
+        <option value="mmetsp">MMETSP</option>
+        <option value="test-db">test-db</option>
+        <!-- there are maybe more  -->
+    </param>
+
+    </inputs>
+    <outputs>
+        <data format="data_manager_json" name="out_file" />
+    </outputs>
+    <tests>
+    <test expect_num_outputs="1">
+        <param name="version" value="1.0"/>
+        <param name="db_type" value="test-db"/>
+        <output name="out_file">
+                <assert_contents>
+                    <has_text text="Pharokka DB version"/>
+                    <has_text text="db_from_"/>
+                    <has_text text="pharokka_db"/>
+                    <has_text text="1.0"/>
+                </assert_contents>
+        </output>
+    </test>
+    </tests>
+    <help><![CDATA[
+        eukulele DB fetcher
+
+        ============
+        
+        Downloads and installs the eukulele DBs for Galaxy
+
+        ]]></help>
+    <!-- <expand macro="citations" /> -->
+    <!-- <expand macro="creator" /> -->
+</tool>
