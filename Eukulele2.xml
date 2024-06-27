@@ -13,10 +13,12 @@
         #end for
 
         ## add a link to each file of the DB 
+        ## we assume, that in the DB only those 3 file types exist
 
-        ln -s '${reference_dir.fields.path}'/reference-pep-trunc.pep.faa db.fasta &&
-        ln -s '${reference_dir.fields.path}'/tax-table.txt taxonomy.txt &&
-        ln -s '${reference_dir.fields.path}'/protein-map.json prot-map.json &&
+        ln -s '${reference_dir.fields.path}'/*.faa db.fasta &&
+        ln -s '${reference_dir.fields.path}'/*.txt taxonomy.txt &&
+        ln -s '${reference_dir.fields.path}'/*.json prot-map.json &&
+
 
         ## run the tool
         EUKulele 
@@ -117,13 +119,19 @@
         <data name="output_dir" format="directory" label="Output Directory"/>
     </outputs> -->
     <outputs>
-        <!-- <collection name="output" type="list" label="Output">
-            <discover_datasets pattern="__name_and_ext__" directory="output_dir" />
-        </collection> -->
+        <collection name="tax_counts" type="list" label="${tool.name} on ${on_string}: taxonomy counts">
+            <!-- <filter>plot['command'] == 'gc_plot'</filter> -->
+            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="output_dir/taxonomy_counts" format="csv"/>
+        </collection>
+        <collection name="tax_estimation" type="list" label="${tool.name} on ${on_string}: taxonomy estimation">
+            <!-- <filter>plot['command'] == 'gc_plot'</filter> -->
+            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="output_dir/taxonomy_estimation" format="tabular"/>
+        </collection>
         <collection name="plots" type="list" label="${tool.name} on ${on_string}: plots">
             <!-- <filter>plot['command'] == 'gc_plot'</filter> -->
             <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="output_dir/taxonomy_visualization" format="png"/>
         </collection>
+
     </outputs>
 
     <tests>
