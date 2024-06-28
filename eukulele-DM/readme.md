@@ -46,3 +46,11 @@ In Galaxy go to:
 
 * Go to the tool
 * Check if new table can be found by: `Select a eukulele database `
+
+
+# Test download locally
+
+```
+EUKulele download --database mmetsp --out_dir mmetsp
+```
+

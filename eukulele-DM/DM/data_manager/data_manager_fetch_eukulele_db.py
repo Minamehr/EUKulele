@@ -9,36 +9,6 @@ import sys
 import tarfile
 from datetime import datetime
 
-# import wget
-
-# def download_untar_store(url, tmp_path, dest_path):
-#     """
-#     Download a tar.gz file containing one folder,
-#     extract that folder and move the content inside dest_path
-#     """
-
-#     extract_path = os.path.join(tmp_path, "extract")
-
-#     os.makedirs(tmp_path, exist_ok=True)
-
-#     # download data
-#     filename = wget.download(url, out=tmp_path)
-#     tarfile_path = os.path.join(tmp_path, filename)
-#     tar = tarfile.open(tarfile_path)
-#     tar.extractall(extract_path)
-
-#     if len(list(os.listdir(extract_path))) > 1:
-#         print("More then one folder in zipped file, aborting !")
-#     else:
-#         for folder in os.listdir(extract_path):
-#             folder_path = os.path.join(extract_path, folder)
-
-#             print(f"Copy data to {dest_path}")
-#             shutil.copytree(folder_path, dest_path)
-#             print("Done !")
-
-#     shutil.rmtree(tmp_path)
-
 
 def main():
     # Parse Command Line
@@ -64,17 +34,12 @@ def main():
     db_value = f"db_v{args.version}_type_{args.db_type}_downloaded_{time}"
     db_path = os.path.join(workdir, db_value)
 
+    print(f"Downloading the DB into {db_path}")
+
     # create DB
     if args.db_type == "test-db":  # only copy the test DB
 
         # TODO check if tool is installed
-        # check if install_databases.py is there
-        # command_args = ["install_databases.py", "-h"]
-        # proc = subprocess.Popen(args=command_args, shell=False)
-        # return_code = proc.wait()
-        # if return_code:
-        #     print("Error downloading Pharokka database.", file=sys.stderr)
-        #     sys.exit(return_code)
 
         # copy the test DB
         test_db_path = os.path.join(
