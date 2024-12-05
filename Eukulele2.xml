@@ -15,10 +15,10 @@
         ## add a link to each file of the DB 
         ## we assume, that in the DB only those 3 file types exist
 
-        ln -s '${reference_dir.fields.path}'/*.faa db.fasta &&
-        ln -s '${reference_dir.fields.path}'/*.txt taxonomy.txt &&
-        ln -s '${reference_dir.fields.path}'/*.json prot-map.json &&
-        ln -s '${reference_dir.fields.path}'/*.dmnd db.dmnd &&
+        ## ln -s '${reference_dir.fields.path}'/*.faa db.fasta &&
+        ## ln -s '${reference_dir.fields.path}'/*.txt taxonomy.txt &&
+        ## ln -s '${reference_dir.fields.path}'/*.json prot-map.json &&
+        ## ln -s '${reference_dir.fields.path}'/*.dmnd db.dmnd &&
 
         ## run the tool
         EUKulele 
