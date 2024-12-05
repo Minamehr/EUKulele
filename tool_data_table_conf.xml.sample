@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <tables>
-        <!-- Locations of euklele_database -->
-
-    <table name="euklele_databases" comment_char="#">
+    <!-- Locations of euklele_database -->
+    <table name="eukulele_databases" comment_char="#">
         <columns>value, name, path</columns>
         <file path="tool-data/euklele_databases.loc" />
     </table>

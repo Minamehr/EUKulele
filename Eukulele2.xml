@@ -18,7 +18,7 @@
         ln -s '${reference_dir.fields.path}'/*.faa db.fasta &&
         ln -s '${reference_dir.fields.path}'/*.txt taxonomy.txt &&
         ln -s '${reference_dir.fields.path}'/*.json prot-map.json &&
-
+        ln -s '${reference_dir.fields.path}'/*.dmnd db.dmnd &&
 
         ## run the tool
         EUKulele 
@@ -27,11 +27,13 @@
         -m '$mets_or_mags'
 
         ## link individual DB parts to the command line
-        ## we assume those files artaxonomy.txte alwayscalled like the in the DB folder
+        ## we assume those files artaxonomy.txte always called like the in the DB folder
 
-        --ref_fasta db.fasta
-        --tax_table taxonomy.txt
-        --protein_map prot-map.json
+        --reference_dir '${reference_dir.fields.path}'
+
+        ## --ref_fasta db.fasta
+        ## --tax_table taxonomy.txt
+        ## --protein_map prot-map.json
 
         ## we always take this extension
         --n_ext '.faa'
@@ -53,7 +55,7 @@
 
         --no_busco
 
-
+        ## && timeout 10
 
     ]]></command>
     <inputs>
@@ -97,17 +99,18 @@
             <param argument="organisms" type="text" optional="true" label="List of organisms/groups to test the BUSCO completeness of matching contigs for (comma-separated)"/>
             <param argument="taxonomy_organisms" type="text" optional="true" label="Taxonomic level of the groupings indicated in the list of organisms (comma-separated)"/>
         </section>
-        <!-- <param name="eukulele_database" type="select" label="Select a eukulele database">
+
+        <param name="reference_dir" type="select" label="Select a eukulele database">
             <options from_data_table="eukulele_databases">
                 <validator message="No eukulele database is available" type="no_options" />
             </options>
-        </param> -->
+        </param>
 
-        <param name="reference_dir" type="select" label="Select a eukulele database">
+        <!-- <param name="reference_dir" type="select" label="Select a eukulele database">
             <options from_data_table="eukulele_db_versioned">
                 <validator message="No eukulele database is available" type="no_options" />
             </options>
-        </param>
+        </param> -->
 
         <!-- <param name="reference_dir" type="text" optional="true" label="Directory where the reference FASTA is stored"/> -->
         <!-- <param argument="ref_fasta" type="text" optional="true" label="Name of the reference FASTA file in reference_dir"/>
